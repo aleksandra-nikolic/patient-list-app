@@ -1,0 +1,77 @@
+<div class="search-input">
+  <p-iconfield>
+    <p-inputicon class="pi pi-search" />
+    <input [(ngModel)]="searchText" type="text" pInputText placeholder="Search" />
+  </p-iconfield>
+</div>
+
+<div class="card">
+  <p-table [value]="filteredPatients" stripedRows [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template #header>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Diagnosis</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-patient let-i="rowIndex">
+      <tr>
+        <td>{{ patient.id }}</td>
+        <td>{{ patient.name }}</td>
+        <td>{{ patient.age }}</td>
+        <td>{{ patient.diagnosis }}</td>
+        <td class="actions">
+          <p-button
+            (click)="openEdit(patient, i)"
+            label="Edit"
+            variant="outlined"
+            severity="contrast"
+            size="small"
+          />
+          <p-button
+            (click)="deletePatient(patient)"
+            label="Delete"
+            severity="contrast"
+            size="small"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+@if (!patients.length) {
+  <p class="no-patient-message">No patient on list!</p>
+}
+
+<div class="card flex justify-center">
+  <p-dialog
+    header="Edit Profile"
+    [modal]="true"
+    [(visible)]="editDialogVisible"
+    [style]="{ width: '600px' }"
+  >
+    @if (selectedPatient) {
+      <div class="edit-form">
+        <div class="form-field">
+          <label>Name</label>
+          <input pInputText [(ngModel)]="selectedPatient.name" />
+        </div>
+        <div class="form-field">
+          <label>Age</label>
+          <input pInputText [(ngModel)]="selectedPatient.age" />
+        </div>
+        <div class="form-field">
+          <label>Diagnosis</label>
+          <input pInputText [(ngModel)]="selectedPatient.diagnosis" />
+        </div>
+      </div>
+
+      <div class="edit-button">
+        <p-button label="Cancel" severity="secondary" (click)="cancelEdit()" />
+        <p-button label="Save" (click)="saveEdit()" />
+      </div>
+    }
+  </p-dialog>
+</div>

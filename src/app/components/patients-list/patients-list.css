@@ -1,0 +1,30 @@
+.actions {
+  display: flex;
+  gap: 8px;
+}
+.search-input {
+  margin: 12px 0;
+}
+.card {
+  margin-bottom: 32px;
+}
+.no-patient-message {
+  font-size: 26px;
+  font-weight: 600;
+}
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 0;
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.edit-button {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+}

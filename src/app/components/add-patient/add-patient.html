@@ -1,0 +1,39 @@
+<div class="container">
+  <h2>Enter patient info</h2>
+  <div class="wrapp">
+    <p-floatlabel>
+      <input
+        pSize="large"
+        pInputText
+        id="over_label"
+        [(ngModel)]="newPatient.name"
+        fluid
+        autocomplete="off"
+      />
+      <label for="over_label">Name</label>
+    </p-floatlabel>
+    <p-floatlabel>
+      <input
+        pSize="large"
+        pInputText
+        id="over_label"
+        [(ngModel)]="newPatient.age"
+        fluid
+        autocomplete="off"
+      />
+      <label for="over_label">Age</label>
+    </p-floatlabel>
+    <p-floatlabel>
+      <input
+        pSize="large"
+        pInputText
+        id="over_label"
+        [(ngModel)]="newPatient.diagnosis"
+        fluid
+        autocomplete="off"
+      />
+      <label for="over_label">Diagnosis</label>
+    </p-floatlabel>
+  </div>
+  <p-button (click)="saveNewPatient()" label="Save" severity="success" size="large" />
+</div>
