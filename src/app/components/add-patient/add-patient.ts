@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +14,7 @@ import { Input } from '@angular/core';
 })
 export class AddPatient {
   @Input() patients: Patient[] = [];
+  @Output() patientAdded = new EventEmitter<Patient>();
   newPatient: Patient = {
     id: 0,
     name: '',
@@ -25,7 +26,7 @@ export class AddPatient {
     const maxId = this.patients.length > 0 ? Math.max(...this.patients.map((p) => p.id)) : 0;
 
     const patientToAdd = { ...this.newPatient, id: maxId + 1 };
-    this.patients.push(patientToAdd);
+    this.patientAdded.emit(patientToAdd);
 
     this.newPatient = { id: 0, name: '', age: null as any, diagnosis: '' };
   }

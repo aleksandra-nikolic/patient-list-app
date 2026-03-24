@@ -1,14 +1,22 @@
 <div class="card">
-  <p-tabs value="0">
+  <p-tabs [(value)]="patientListTab">
     <p-tablist class="navigation">
       <p-tab value="0">Patients-list</p-tab>
       <p-tab value="1">Add Patient</p-tab>
     </p-tablist>
     <p-tabpanels>
       <p-tabpanel value="0">
-        <app-patients-list [patients]="patients"></app-patients-list>
+        <app-patients-list
+          [patients]="patients"
+          (patientsChanged)="onPatientsChanged($event)"
+        ></app-patients-list>
       </p-tabpanel>
-      <p-tabpanel value="1"> <app-add-patient [patients]="patients"></app-add-patient> </p-tabpanel>
+      <p-tabpanel value="1">
+        <app-add-patient
+          [patients]="patients"
+          (patientAdded)="onPatientAdded($event)"
+        ></app-add-patient>
+      </p-tabpanel>
     </p-tabpanels>
   </p-tabs>
 </div>

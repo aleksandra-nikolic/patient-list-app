@@ -41,7 +41,10 @@
     </ng-template>
   </p-table>
 </div>
-@if (!patients.length) {
+
+@if (searchText && !filteredPatients.length) {
+  <p class="no-patient-message">No patient found!</p>
+} @else if (!patients.length) {
   <p class="no-patient-message">No patient on list!</p>
 }
 

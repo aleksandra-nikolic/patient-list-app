@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 import { TabsModule } from 'primeng/tabs';
 import { TableModule } from 'primeng/table';
@@ -29,6 +29,7 @@ import { Input } from '@angular/core';
 })
 export class PatientsList {
   @Input() patients: Patient[] = [];
+  @Output() patientsChanged = new EventEmitter<Patient[]>();
 
   editDialogVisible = false;
   selectedPatient: Patient | null = null;
@@ -53,11 +54,13 @@ export class PatientsList {
     this.editDialogVisible = false;
     this.selectedPatient = null;
     this.editIndex = undefined;
+    this.patientsChanged.emit(this.patients);
   }
 
   deletePatient(patient: Patient) {
     const index = this.patients.findIndex((p) => p.id === patient.id);
     this.patients.splice(index, 1);
+    this.patientsChanged.emit(this.patients);
   }
 
   get filteredPatients(): Patient[] {
