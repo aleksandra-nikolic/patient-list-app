@@ -25,3 +25,6 @@ Allows adding, editing, deleting and searching patients. Data is stored in Local
 3. Start the development server
    ng serve
 4. Open http://localhost:4200 in your browser
+
+## Live demo
+https://my-patient-list.netlify.app/
